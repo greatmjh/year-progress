@@ -1,0 +1,26 @@
+body {
+    text-align: center;
+    background-color: #121212;
+    color: white;
+    font-family: sans-serif;
+    font-size: large;
+}
+#percentage {
+    font-weight: bolder;
+}
+#year-prog {
+    width: 95%;
+    height: 30pt;
+    -webkit-appearance: none;
+    border: none;
+    background-color: #bfbfbf;
+}
+#year-prog::-webkit-progress-bar {
+    background-color: #bfbfbf;
+}
+#year-prog::-webkit-progress-value {
+    background-color: #44b0d4;
+}
+#year-prog::-moz-progress-bar {
+    background-color: #44b0d4;
+}
