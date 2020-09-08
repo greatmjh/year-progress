@@ -16,7 +16,7 @@ function update() {
     progress = Math.round(progress);
     progress = progress / 10000000;
     //Display in progress bar
-    document.getElementById("year-prog").value = progress * 1000000;
+    document.getElementById("year-prog").value = progress * 100;
     //Pad extra zeroes if necessary
     progress = String(progress);
     if (progress.length == 2) {
