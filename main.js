@@ -1,6 +1,8 @@
 function yearToTimestamp(year){
-    var datum = new Date(Date.UTC(year,0,1,0,0,0));
-    return datum.getTime();
+    var d = new Date(Date.UTC(year,0,1,0,0,0));
+    ts = d.getTime()
+    ts = ts + d.getTimezoneOffset()*60000 //get timezone offset in milliseconds and apply
+    return ts;
 }
 
 function update() {
@@ -29,13 +31,16 @@ function update() {
     
     //Pad extra zeroes if necessary
     progress = String(progress);
+    if (progress < 10) {
+        progress = "0" + progress
+    }
     if (progress.length == 2) {
         //No decimal
-        progress = progress + ".0000000";
+        progress = progress + ".000000";
     } 
     
     //Pad the extra zeroes
-    while (progress.length <= 9) {
+    while (progress.length < 10) {
         progress = progress + "0";
     }
     for (i = 0; i < document.getElementsByClassName("percent").length; i++) {
