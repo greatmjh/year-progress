@@ -5,6 +5,25 @@ function yearToTimestamp(year){
     return ts;
 }
 
+function toFixed(x) {
+    if (Math.abs(x) < 1.0) {
+      var e = parseInt(x.toString().split('e-')[1]);
+      if (e) {
+          x *= Math.pow(10,e-1);
+          x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
+      }
+    } else {
+      var e = parseInt(x.toString().split('+')[1]);
+      if (e > 20) {
+          e -= 20;
+          x /= Math.pow(10,e);
+          x += (new Array(e+1)).join('0');
+      }
+    }
+
+    return x;
+  }
+
 function update() {
     year = new Date().getFullYear(); //Get current year
     
@@ -25,21 +44,22 @@ function update() {
     progress = progress * 1000000000;
     progress = Math.round(progress);
     progress = progress / 10000000;
-    
+
     //Display in progress bar
     document.getElementById("year-prog").value = progress * 100;
     
     //Pad extra zeroes if necessary
-    progress = String(progress);
+    progress = String(toFixed(progress));
     if (progress < 10) {
         progress = "0" + progress
     }
     if (progress.length == 2) {
         //No decimal
-        progress = progress + ".000000";
+        progress = progress + ".0000000";
     } 
     
     //Pad the extra zeroes
+    progress = progress.substring(0, 10)
     while (progress.length < 10) {
         progress = progress + "0";
     }
